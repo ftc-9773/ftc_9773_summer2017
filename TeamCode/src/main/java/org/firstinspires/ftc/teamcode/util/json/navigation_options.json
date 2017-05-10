@@ -1,0 +1,186 @@
+{
+  "2ODS_IMU_DriveSysEncoders" : {
+    "LineFollow": {
+      "LightSensorFront": {
+        "name": "odsfront",
+        "type": "OpticalDistanceSensor",
+        "portnum" : 0
+      },
+      "LightSensorBack": {
+        "name": "odsback",
+        "type": "OpticalDistanceSensor",
+        "portnum" : 6
+      },
+      "lineFollowVariables": {
+        "white": 0.80,
+        "black" : 0.10,
+        "lowSpeed": 0.4,
+        "highSpeed": 0.9,
+        "timeOut": 4.0
+      },
+      "__lineFollowVariables_v2robot": {
+        "white": 0.722385,
+        "black" : 0.108504,
+        "lowSpeed": 0.4,
+        "highSpeed": 0.9,
+        "timeOut": 4.0
+      }
+    },
+    "IMU": {
+      "name" : "MRGyro",
+      "DIMname" : "dim",
+      "type" : "MRGyro",
+      "porttype": "i2c",
+      "portnum": 0,
+      "driveSysInitialPower": 0.3,
+      "driveSysTargetPower": 0.3,
+      "angleTolerance": 3.0,
+      "straightPID_kp" : 0.025,
+      "turnPID_kp" : 0.005,
+      "PID_minSpeed" : -1.0,
+      "PID_maxSpeed" : 1.0
+    },
+    "__IMU_unused": {
+      "name" : "navx",
+      "DIMname" : "dim2",
+      "type" : "navx-micro",
+      "porttype": "i2c",
+      "portnum": 5,
+      "driveSysInitialPower": 0.25,
+      "driveSysTargetPower": 0.5,
+      "angleTolerance": 2.0,
+      "straightPID_kp" : 0.025,
+      "turnPID_kp" : 0.005,
+      "PID_minSpeed" : -1.0,
+      "PID_maxSpeed" : 1.0
+    },
+    "RangeSensor" : {
+      "name": "rangeSensor1",
+      "runningAvgWeight" : 0.5
+    },
+    "DriveSysEncoderVariables" : {
+      "__Comment" : "These values are applicable when driving with RUN_USING_ENCODERS or RUN_TO_POSITION setting",
+      "LineFollowMaxSpeed" : 0.3,
+      "TurningMaxSpeed" : 0.3,
+      "StraightLineMaxSpeed" : 0.5,
+      "DriveSysTeleOpMaxSpeed" : 1.0
+    }
+  },
+  "LineFollow_IMU_DriveSysEncoders" : {
+    "LineFollow": {
+      "LightSensor": {
+        "name": "ods",
+        "type": "OpticalDistanceSensor"
+      },
+      "lineFollowVariables": {
+        "white": 0.80,
+        "black" : 0.263930,
+        "lowSpeed": 0.4,
+        "highSpeed": 0.9,
+        "timeOut": 4.0
+      },
+      "__lineFollowVariables_v2robot": {
+        "white": 0.722385,
+        "black" : 0.108504,
+        "lowSpeed": 0.4,
+        "highSpeed": 0.9,
+        "timeOut": 4.0
+      }
+    },
+    "IMU": {
+      "name" : "MRGyro",
+      "DIMname" : "dim",
+      "type" : "MRGyro",
+      "porttype": "i2c",
+      "portnum": 0,
+      "driveSysInitialPower": 0.3,
+      "driveSysTargetPower": 0.3,
+      "angleTolerance": 3.0,
+      "straightPID_kp" : 0.025,
+      "turnPID_kp" : 0.005,
+      "PID_minSpeed" : -1.0,
+      "PID_maxSpeed" : 1.0
+    },
+    "__IMU_unused": {
+      "name" : "navx",
+      "DIMname" : "dim2",
+      "type" : "navx-micro",
+      "porttype": "i2c",
+      "portnum": 5,
+      "driveSysInitialPower": 0.25,
+      "driveSysTargetPower": 0.5,
+      "angleTolerance": 2.0,
+      "straightPID_kp" : 0.025,
+      "turnPID_kp" : 0.005,
+      "PID_minSpeed" : -1.0,
+      "PID_maxSpeed" : 1.0
+    },
+    "RangeSensor" : {
+      "name": "rangeSensor1",
+      "runningAvgWeight" : 0.5
+    },
+    "DriveSysEncoderVariables" : {
+      "__Comment" : "These values are applicable when driving with RUN_USING_ENCODERS or RUN_TO_POSITION setting",
+      "LineFollowMaxSpeed" : 0.3,
+      "TurningMaxSpeed" : 0.3,
+      "StraightLineMaxSpeed" : 0.5,
+      "DriveSysTeleOpMaxSpeed" : 1.0
+    }
+  },
+  "LineFollowAndIMU" : {
+    "LineFollow": {
+      "LightSensor": {
+        "name": "ods",
+        "type": "OpticalDistanceSensor"
+      },
+      "lineFollowVariables": {
+        "white": 0.996,
+        "black" : 0.175,
+        "lowSpeed": 0.10,
+        "highSpeed": 0.30,
+        "timeOut": 4.0
+      }
+    },
+    "IMU": {
+      "name" : "MRGyro",
+      "DIMname" : "dim",
+      "type" : "MRGyro",
+      "porttype": "i2c",
+      "portnum": 0,
+      "driveSysInitialPower": 0.3,
+      "driveSysTargetPower": 0.3,
+      "angleTolerance": 3.0
+    },
+    "RangeSensor" : {
+      "name": "rangeSensor1"
+    }
+  },
+  "LineFollowOnly" : {
+    "LineFollow": {
+      "LightSensor": {
+        "name": "ods",
+        "type": "OpticalDistanceSensor"
+      },
+      "lineFollowVariables": {
+        "lowSpeed": 0.15,
+        "highSpeed": 0.35,
+        "timeOut": 2.5
+      }
+    }
+  },
+  "MRGyroOnly" : {
+    "IMU": {
+      "name": "MRgyro",
+      "DIMname": "dim2",
+      "type": "MRgyro",
+      "porttype": "i2c",
+      "portnum": 0,
+      "angleTolerance": 3.0,
+      "straightPID_kp" : 0.025,
+      "turnPID_kp" : 0.005
+    }
+  },
+  "none" : {
+
+  }
+}

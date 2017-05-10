@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<Robot type="FirstInspires-FTC">
+    <MotorController name="Right Motor Controller" serialNumber="AL00YC4W">
+        <Motor name="fMotorR" port="1" />
+        <Motor name="rMotorR" port="2" />
+    </MotorController>
+    <ServoController name="Servo Controller 2" serialNumber="AL00VDHH">
+        <ContinuousRotationServo name="crownServo" port="1" />
+        <ContinuousRotationServo name="liftServo" port="6" />
+    </ServoController>
+    <MotorController name="Left Motor Controller" serialNumber="AL00VHR9">
+        <Motor name="fMotorL" port="1" />
+        <Motor name="rMotorL" port="2" />
+    </MotorController>
+    <ServoController name="Main Servos" serialNumber="AL00XLTB">
+        <Servo name="particleReleaseServo" port="1" />
+        <ContinuousRotationServo name="wallServo" port="3" />
+        <ContinuousRotationServo name="buttonServo" port="6" />
+    </ServoController>
+    <DeviceInterfaceModule name="dim2" serialNumber="AI041UBC">
+        <Gyro name="gyro" port="0" />
+        <ModernRoboticsI2cRangeSensor name="rangeSensor1" port="2" />
+        <ColorSensor name="colorSensor1" port="4" />
+        <OpticalDistanceSensor name="odsfront" port="0" />
+        <OpticalDistanceSensor name="odsback" port="6" />
+    </DeviceInterfaceModule>
+    <MotorController name="Particle Accelerator" serialNumber="A7008NT3">
+        <Motor name="partAccMotor1" port="1" />
+        <Motor name="partAccMotor2" port="2" />
+    </MotorController>
+    <MotorController name="Harvester and Lift Controller" serialNumber="AI049PSK">
+        <Motor name="liftMotor" port="1" />
+        <Motor name="harvesterMotor" port="2" />
+    </MotorController>
+</Robot>

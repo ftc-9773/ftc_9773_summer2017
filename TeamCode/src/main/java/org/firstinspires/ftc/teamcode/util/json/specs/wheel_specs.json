@@ -1,0 +1,18 @@
+{
+  "rubber-treaded" : {
+    "diameter" : 4.0,
+    "friction_coeff" : 1.0
+  },
+  "omniwheel" : {
+    "diameter" : 4.0,
+    "friction_coeff" : 1.0
+  },
+  "mecanumwheel" : {
+    "diameter" : 4.0,
+    "friction_coeff" : 1.0
+  },
+  "tetrixmax" : {
+    "diameter" : 4.0,
+    "friction_coeff" : 1.0
+  }
+}

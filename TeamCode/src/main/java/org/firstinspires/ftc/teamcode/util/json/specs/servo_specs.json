@@ -1,0 +1,8 @@
+{
+  "Tetrix-HS755-HB" : {
+    "continuous" : false,
+    "rotation" : 180,
+    "__torque_units" : "oz-in",
+    "torque" : 183
+  }
+}

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<Robot type="FirstInspires-FTC">
+    <MotorController name="Right Motor Controller" serialNumber="AL00YC4W">
+        <Motor name="fMotorR" port="1" />
+        <Motor name="rMotorR" port="2" />
+    </MotorController>
+    <MotorController name="Left Motor Controller" serialNumber="AL00VHR9">
+        <Motor name="fMotorL" port="1" />
+        <Motor name="rMotorL" port="2" />
+    </MotorController>
+    <ServoController name="Main Servos" serialNumber="AL00VM8G">
+        <ContinuousRotationServo name="buttonServo" port="1" />
+        <ContinuousRotationServo name="liftServo" port="2" />
+        <Servo name="particleReleaseServo" port="3" />
+    </ServoController>
+    <MotorController name="Particle Accelerator" serialNumber="A7008NT3">
+        <Motor name="partAccMotor1" port="1" />
+        <Motor name="partAccMotor2" port="2" />
+    </MotorController>
+    <MotorController name="Harvester and Lift Controller" serialNumber="AI049PSK">
+        <Motor name="liftMotor" port="1" />
+        <Motor name="harvesterMotor" port="2" />
+    </MotorController>
+</Robot>

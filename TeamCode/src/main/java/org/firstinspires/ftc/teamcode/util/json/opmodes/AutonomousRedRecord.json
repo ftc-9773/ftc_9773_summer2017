@@ -1,0 +1,9 @@
+{
+  "recordFileName" : "StartToCapBall.csv",
+  "robot" : "2016_11_19_Ambler_Robot",
+  "__comment1" : "clock-cycle is in milli seconds",
+  "printDebugMsg" : false,
+  "__comment1" : "possible values for Instr level are none, summary, complete",
+  "InstrumentationLevel" : "summary",
+  "clock-cycle" : 5
+}

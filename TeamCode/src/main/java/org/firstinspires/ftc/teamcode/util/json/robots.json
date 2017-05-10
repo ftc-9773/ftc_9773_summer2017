@@ -1,0 +1,58 @@
+{
+  "MRGyroTestRobot" : {
+    "driveSystem": "4Motor6WDSteering",
+    "attachments": ["CapBallLift"],
+    "navigation": "MRGyroOnly",
+    "distanceBetweenWheels" : 15.5,
+    "distanceBetweenLeftAndODS":11,
+    "distanceBetweenRightAndODS":4,
+    "loopRuntimeLog" : "/sdcard/FIRST/team9773/logs/loopRuntime",
+    "rangeSensorLog" : "/sdcard/FIRST/team9773/logs/rangeSensor",
+    "gyroLog" : "/sdcard/FIRST/team9773/logs/gyro"
+  },
+  "2017_4_25-28_StLouis_Robot" : {
+    "driveSystem": "4Motor6WDSteering",
+    "autonomous_attachments": ["BeaconClaim", "ParticleRelease", "Harvester", "ParticleAccelerator", "WallFollower"],
+    "teleop_attachments": ["CapBallLift", "ParticleRelease", "Harvester", "ParticleAccelerator", "BeaconClaimTeleOp", "WallFollower"],
+    "autonomous_navigation": "2ODS_IMU_DriveSysEncoders",
+    "teleop_navigation": "none",
+    "distanceBetweenLeftAndODS":11,
+    "distanceBetweenRightAndODS":4,
+    "distanceBetweenWheels" : 15.5,
+    "loopRuntimeLog" : "/sdcard/FIRST/team9773/logs/loopRuntime",
+    "rangeSensorLog" : "/sdcard/FIRST/team9773/logs/rangeSensor",
+    "gyroLog" : "/sdcard/FIRST/team9773/logs/gyro",
+    "odsLog" : "/sdcard/FIRST/team9773/logs/ods",
+    "colorLog" : "/sdcard/FIRST/team9773/logs/color",
+    "partAccLog" : "/sdcard/FIRST/team9773/logs/partAcc"
+  },
+  "2017_3_17-19_Scranton_Robot" : {
+    "driveSystem": "4Motor6WDSteering",
+    "autonomous_attachments": ["BeaconClaim", "ParticleRelease", "Harvester", "ParticleAccelerator", "WallFollower"],
+    "teleop_attachments": ["CapBallLift", "ParticleRelease", "Harvester", "ParticleAccelerator", "BeaconClaimTeleOp", "WallFollower"],
+    "autonomous_navigation": "2ODS_IMU_DriveSysEncoders",
+    "teleop_navigation": "none",
+    "distanceBetweenLeftAndODS":11,
+    "distanceBetweenRightAndODS":4,
+    "distanceBetweenWheels" : 15.5,
+    "loopRuntimeLog" : "/sdcard/FIRST/team9773/logs/loopRuntime",
+    "rangeSensorLog" : "/sdcard/FIRST/team9773/logs/rangeSensor",
+    "gyroLog" : "/sdcard/FIRST/team9773/logs/gyro",
+    "odsLog" : "/sdcard/FIRST/team9773/logs/ods",
+    "colorLog" : "/sdcard/FIRST/team9773/logs/color"
+  },
+  "2017_2_26_V3_Robot" : {
+    "driveSystem": "4Motor6WDSteering",
+    "autonomous_attachments": ["BeaconClaim", "ParticleRelease", "Harvester", "ParticleAccelerator"],
+    "teleop_attachments": ["CapBallLift", "ParticleRelease", "Harvester", "ParticleAccelerator", "BeaconClaim"],
+    "autonomous_navigation": "LineFollow_IMU_DriveSysEncoders",
+    "teleop_navigation": "none",
+    "distanceBetweenLeftAndODS":11,
+    "distanceBetweenRightAndODS":4,
+    "distanceBetweenWheels" : 15.5,
+    "loopRuntimeLog" : "/sdcard/FIRST/team9773/logs/loopRuntime",
+    "rangeSensorLog" : "/sdcard/FIRST/team9773/logs/rangeSensor",
+    "navxLog" : "/sdcard/FIRST/team9773/logs/gyro",
+    "odsLog" : "/sdcard/FIRST/team9773/logs/ods"
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "__comment1" : "all servos will be set to position 1 in the constructor.  This may require the ",
+  "__comment2" : "direction to be set to REVERSE, depending on how the servo is mounted",
+  "BeaconClaim" : {
+    "motors" : {
+      "__buttonServo_standard" : {
+        "motorType" : "StandardServo",
+        "motor" : "Tetrix-HS755-HB",
+        "__comment" : "The following 2 values have to be changed",
+        "scaleRangeMin" : 0.15,
+        "scaleRangeMax" : 0.549,
+        "needReverse" : true,
+        "__fixedPositions" : true,
+        "__comment_speed" : "speed is in the units of centimeters per second",
+        "speed" : 6,
+        "__comment_strokeLength" : "strokeLength is in the units of cm",
+        "strokeLength" : 15.0,
+        "minButton" : "gamepad1.a",
+        "maxButton" : "gamepad1.y"
+      },
+      "buttonServo" : {
+        "motorType" : "CRservo",
+        "motor" : "Tetrix-HS755-HB",
+        "__comment" : "The following 2 values have to be changed",
+        "__scaleRangeMin" : 0.15,
+        "__scaleRangeMax" : 0.549,
+        "needReverse" : true,
+        "__fixedPositions" : true,
+        "__comment_speed" : "speed is in the units of centimeters per second",
+        "speed" : 12,
+        "__comment_strokeLength" : "strokeLength is in the units of cm",
+        "strokeLength" : 13.9,
+        "minButton" : "gamepad1.a",
+        "maxButton" : "gamepad1.y"
+      },
+      "__buttonServoLinear_forv2robot" : {
+        "motorType" : "LinearServo",
+        "motor" : "Actuonix L16-140-35-6-R",
+        "__comment" : "For linearServo, min position=40, max position=200",
+        "scaleRangeMin" : 0.157,
+        "scaleRangeMax" : 0.784,
+        "needReverse" : false,
+        "__comment_speed" : "speed is in the units of centimeters per second",
+        "speed" : 3.2,
+        "__comment_strokeLength" : "strokeLength is in the units of cm",
+        "strokeLength" : 14.0
+      }
+    },
+    "sensors" : {
+      "__colorSensor1" : {
+        "sensorType" : "ColorSensor",
+        "porttype" : "i2c",
+        "portnum" : 5
+      },
+      "__touchSensor1" : {
+        "sensorType": "TouchSensor"
+      }
+    }
+  },
+  "CapBallLift" : {
+    "motors" : {
+      "liftMotor" : {
+        "motorType" : "dc",
+        "motor" : "Neverest60",
+        "needReverse" : false,
+        "fixedPositions" : false,
+        "maxSpeed" : 0.9,
+        "minButton" : "gamepad1.left_trigger",
+        "maxButton" : "gamepad1.right_trigger"
+      },
+      "liftServo":{
+        "motorType" : "CRservo",
+        "motor" : "Tetrix-HS755-HB",
+        "__scaleRange" : "upright:120, expand: 230",
+        "scaleRangeMin" : 0.47,
+        "scaleRangeMax" : 0.902,
+        "needReverse" : false,
+        "fixedPositions" : true,
+        "minButton" : "gamepad1.left_bumper",
+        "maxButton" : "gamepad1.right_bumper"
+      }
+    }
+  },
+  "Harvester" : {
+    "motors" : {
+      "harvesterMotor" : {
+        "motorType" : "dc",
+        "motor" : "Neverest40",
+        "needReverse" : false,
+        "fixedPositions" : false,
+        "maxSpeed" : 1.0,
+        "minButton" : "gamepad2.left_stick_y",
+        "maxButton" : "gamepad2.left_stick_y"
+      }
+    }
+  },
+  "ParticleAccelerator" : {
+    "motors": {
+      "partAccMotor1": {
+        "motorType" : "dc",
+        "__motor comment" : "The Motor used for shooter is Neverest20 with banebot p60 gear box",
+        "motor" : "Neverest20",
+        "needReverse" : true,
+        "fixedPositions" : false,
+        "maxSpeed" : 4000,
+        "__comment1" : "ramUpTime is in milli seconds",
+        "rampUpTime" : 2000,
+        "minButton" : "gamepad1.dpad_down",
+        "maxButton" : "gamepad1.dpad_up"
+      },
+      "partAccMotor2": {
+        "motorType" : "dc",
+        "__motor comment" : "The Motor used for shooter is Neverest20 with banebot p60 gear box",
+        "motor" : "Neverest20",
+        "needReverse" : true,
+        "fixedPositions" : false,
+        "maxSpeed" : 4000,
+        "__comment1" : "ramUpTime is in milli seconds",
+        "rampUpTime" : 2000,
+        "minButton" : "gamepad1.dpad_down",
+        "maxButton" : "gamepad1.dpad_up"
+      }
+    }
+  },
+  "ParticleRelease":{
+    "motors": {
+      "particleReleaseServo":{
+        "motorType" : "servo",
+        "motor" : "Tetrix-HS755-HB",
+        "__scaleRange" : "block:128, release: 255",
+        "__comments for scaleRange" : "For v3 robot: open=80/255, close=0/255; For v2robot: open=0, close=0.67",
+        "scaleRangeMin" : 0.0,
+        "scaleRangeMax" : 0.3137,
+        "needReverse" : true,
+        "fixedPositions" : true,
+        "minButton" : "gamepad2.y",
+        "maxButton" : "gamepad2.a"
+      }
+    }
+  },
+  "none" : {
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "startingDelay" : 0,
+  "__Comment" : "startingPosition can be 1 or 2",
+  "startingPosition" : 1,
+  "enableBackGroundTasks" : false,
+  "printDebugMsg" : false,
+  "__comment1" : "possible values for Instr level are none, summary, complete",
+  "InstrumentationLevel" : "summary",
+  "autonomousOption" : "StLouisRed",
+  "robot" : "2017_4_25-28_StLouis_Robot"
+}
