@@ -382,4 +382,9 @@ public class TwoMotorDrive extends DriveSystem{
     @Override
     public void unreverseTeleop(){ reverseMultiplier = 1;}
 
+    @Override
+    public double[] getCurPosition(){
+        double[] curPosition = new double[2];
+        return curPosition;
+    }
 }
