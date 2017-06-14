@@ -7,6 +7,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.ftccommon.DbgLog;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.attachments.Attachment;
 import org.firstinspires.ftc.teamcode.attachments.BeaconClaim;
 import org.firstinspires.ftc.teamcode.attachments.CapBallLift;
@@ -15,6 +16,7 @@ import org.firstinspires.ftc.teamcode.attachments.ParticleAccelerator;
 import org.firstinspires.ftc.teamcode.attachments.ParticleRelease;
 import org.firstinspires.ftc.teamcode.attachments.WallFollower;
 import org.firstinspires.ftc.teamcode.drivesys.DriveSystem;
+import org.firstinspires.ftc.teamcode.navigation.CoordinateSys;
 import org.firstinspires.ftc.teamcode.navigation.Navigation;
 import org.firstinspires.ftc.teamcode.util.BackgroundTasks;
 import org.firstinspires.ftc.teamcode.util.FileRW;
@@ -186,6 +188,10 @@ public class FTCRobot {
         while (curOpMode.opModeIsActive()) {
             driverStation.getNextCmd();
             instrumentation.addInstrData();
+            navigation.coordinateSys.updatePose();
+            curOpMode.telemetry.addData("X: ", navigation.coordinateSys.getX());
+            curOpMode.telemetry.addData("Y: ", navigation.coordinateSys.getY());
+            curOpMode.telemetry.addData("Angle: ", navigation.coordinateSys.getAngle());
             curOpMode.idle();
         }
         instrumentation.closeLog();

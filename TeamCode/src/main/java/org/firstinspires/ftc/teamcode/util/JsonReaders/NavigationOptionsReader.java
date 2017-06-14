@@ -18,6 +18,7 @@ public class NavigationOptionsReader extends JsonReader {
     public JSONObject imuObj=null;
     public JSONObject rangeObj=null;
     public JSONObject encoderVarsObj=null;
+    public JSONObject coordinateSysObj=null;
 
     public NavigationOptionsReader(String filePath, String navOptStr) {
         super(filePath);
@@ -40,6 +41,10 @@ public class NavigationOptionsReader extends JsonReader {
             if (key != null) {
                 encoderVarsObj = navOptObj.getJSONObject(key);
             }
+            key = JsonReader.getRealKeyIgnoreCase(navOptObj, "CoordinateSys");
+            if (key != null){
+                coordinateSysObj = navOptObj.getJSONObject(key);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -56,6 +61,8 @@ public class NavigationOptionsReader extends JsonReader {
     public boolean rangeSensorExists() { return (this.rangeObj != null); }
 
     public boolean encoderVarsExist() { return (this.encoderVarsObj != null); }
+
+    public boolean coordinateSysExists(){return (this.coordinateSysObj != null);}
 
     public String getLightSensorName() {
         String lightSensorName = null;
@@ -214,5 +221,38 @@ public class NavigationOptionsReader extends JsonReader {
             e.printStackTrace();
         }
         return (maxSpeed);
+    }
+
+    public double getStartingPositionX(){
+        double startingX=0.0;
+        try {
+            String key = JsonReader.getRealKeyIgnoreCase(coordinateSysObj, "startingX");
+            startingX = coordinateSysObj.getDouble(key);
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
+        return startingX;
+    }
+
+    public double getStartingPositionY(){
+        double startingY=0.0;
+        try {
+            String key = JsonReader.getRealKeyIgnoreCase(coordinateSysObj, "startingY");
+            startingY = coordinateSysObj.getDouble(key);
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
+        return startingY;
+    }
+
+    public double getStartingPositionAngle(){
+        double startingAngle=0.0;
+        try {
+            String key = JsonReader.getRealKeyIgnoreCase(coordinateSysObj, "startingAngle");
+            startingAngle = coordinateSysObj.getDouble(key);
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
+        return startingAngle;
     }
 }

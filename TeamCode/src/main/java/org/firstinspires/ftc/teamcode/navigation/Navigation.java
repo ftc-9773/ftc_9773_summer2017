@@ -28,6 +28,7 @@ public class Navigation {
     public LineFollow lf;
     public EncoderNavigation encoderNav;
     public ModernRoboticsI2cRangeSensor rangeSensor;
+    public CoordinateSys coordinateSys;
     public double lfMaxSpeed=1.0, straightDrMaxSpeed=1.0, turnMaxSpeed=1.0;
     public double driveSysTeleopMaxSpeed=1.0;
 //    private Instrumentation.LoopRuntime driveToDistInstr, driveTillWhitelineInstr, turnRobotInstr;
@@ -64,12 +65,7 @@ public class Navigation {
         }
 
         if (navOption.imuExists()) {
-            if (navOption.getIMUType().equalsIgnoreCase("navx-micro")) {
-                this.gyro = new NavxMicro(curOpMode, robot, this, navOption.getIMUDIMname(),
-                        navOption.getIMUportNum(),
-                        navOption.getIMUVariableDouble("angleTolerance"), navOption.getIMUVariableDouble("straightPID_kp"),
-                        navOption.getIMUVariableDouble("turnPID_kp"));
-            } else if (navOption.getIMUType().equalsIgnoreCase("MRgyro")) {
+            if (navOption.getIMUType().equalsIgnoreCase("MRgyro")) {
                 DbgLog.msg("ftc9773: instantiating MR gyro");
 //                curOpMode.telemetry.addData("ftc9773:", "instantiating MR gyro");
 //                curOpMode.telemetry.update();
@@ -96,6 +92,14 @@ public class Navigation {
             this.turnMaxSpeed = navOption.getTurningMaxSpeed();
             this.driveSysTeleopMaxSpeed = navOption.getDoubleDriveSysEncVar("DriveSysTeleOpMaxSpeed");
             this.encoderNav = new EncoderNavigation(robot, robot.driveSystem, curOpMode, this);
+        }
+
+        if (navOption.coordinateSysExists()){
+            double startingX = navOption.getStartingPositionX();
+            double startingY = navOption.getStartingPositionY();
+            double startingAngle = navOption.getStartingPositionAngle();
+
+            this.coordinateSys = new CoordinateSys(robot, curOpMode, startingX, startingY, startingAngle);
         }
 
 

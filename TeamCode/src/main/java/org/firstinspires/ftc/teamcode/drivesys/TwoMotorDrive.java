@@ -144,10 +144,6 @@ public class TwoMotorDrive extends DriveSystem{
         motorR.setDirection(DcMotorSimple.Direction.REVERSE);
         this.setZeroPowerMode(DcMotor.ZeroPowerBehavior.BRAKE);
         this.frictionCoefficient = frictionCoefficient;
-        this.maxSpeedCPS = maxSpeedCPS;
-        DbgLog.msg("ftc9773: max speed CPS = %d", maxSpeedCPS);
-        motorL.setMaxSpeed(maxSpeedCPS);
-        motorR.setMaxSpeed(maxSpeedCPS);
         this.wheel = wheel;
         this.motorCPR = motorCPR;
         this.LisZero = this.RisZero =  true;
@@ -287,18 +283,6 @@ public class TwoMotorDrive extends DriveSystem{
         DbgLog.msg("ftc9773: motorL1 current position = %d", getNonZeroCurrentPos(motorL));
         setDriveSysMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-    }
-
-    @Override
-    public void setMaxSpeedCPS(int cps) {
-        motorL.setMaxSpeed(cps);
-        motorR.setMaxSpeed(cps);
-    }
-
-    @Override
-    public void resumeMaxSpeed() {
-        motorL.setMaxSpeed(motorLMaxSpeed);
-        motorR.setMaxSpeed(motorRMaxSpeed);
     }
 
     @Override

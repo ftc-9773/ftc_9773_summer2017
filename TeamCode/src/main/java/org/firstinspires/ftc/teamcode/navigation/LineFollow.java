@@ -60,7 +60,6 @@ public class LineFollow{
 
     public void turnUntilWhiteLine(boolean spinClockwise) {
         double leftInitialPower=0.0, rightInitialPower=0.0;
-        driveSystem.setMaxSpeedCPS((int)2500);
         if(spinClockwise){
             leftInitialPower = 0.3;
             rightInitialPower = -leftInitialPower;
@@ -75,7 +74,6 @@ public class LineFollow{
 //                break;
         }
         driveSystem.stop();
-        driveSystem.resumeMaxSpeed();
 
     }
 

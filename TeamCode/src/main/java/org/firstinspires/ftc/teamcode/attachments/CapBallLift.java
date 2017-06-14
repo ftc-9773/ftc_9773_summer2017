@@ -51,8 +51,6 @@ public class CapBallLift implements  Attachment {
                 liftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
             }
             liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            double maxSpeed = liftMotorObj.getDouble("maxSpeed");
-            liftMotor.setMaxSpeed((int)(liftMotor.getMaxSpeed() * maxSpeed));
             downPosition = liftMotorObj.getInt("downPosition");
             midPosition = liftMotorObj.getInt("midPosition");
             upPosition = liftMotorObj.getInt("upPosition");

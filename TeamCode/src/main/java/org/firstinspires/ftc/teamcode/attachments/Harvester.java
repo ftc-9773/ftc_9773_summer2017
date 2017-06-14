@@ -43,8 +43,6 @@ public class Harvester implements Attachment {
                 harvesterMotor.setDirection(DcMotorSimple.Direction.REVERSE);
             }
             harvesterMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            double maxSpeed = harvesterMotorObj.getDouble("maxSpeed");
-            harvesterMotor.setMaxSpeed((int)(harvesterMotor.getMaxSpeed() * maxSpeed));
         } catch (JSONException e){
             e.printStackTrace();
         }

@@ -3,5 +3,5 @@
   "__comment1" : "possible values for Instr level are none, summary, complete",
   "InstrumentationLevel" : "summary",
   "autonomousOption" : "printMinMaxLight",
-  "robot" : "2017_4_25-28_StLouis_Robot"
+  "robot" : "RevTestRobot"
 }

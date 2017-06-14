@@ -127,6 +127,50 @@
       "DriveSysTeleOpMaxSpeed" : 1.0
     }
   },
+  "LineFollow_IMU_CoordinateSys_DriveSysEncoders" : {
+    "LineFollow": {
+      "LightSensor": {
+        "name": "ods",
+        "type": "OpticalDistanceSensor"
+      },
+      "lineFollowVariables": {
+        "white": 0.996,
+        "black" : 0.175,
+        "lowSpeed": 0.10,
+        "highSpeed": 0.30,
+        "timeOut": 4.0
+      }
+    },
+    "IMU": {
+      "name" : "MRGyro",
+      "DIMname" : "dim",
+      "type" : "MRGyro",
+      "porttype": "i2c",
+      "portnum": 0,
+      "driveSysInitialPower": 0.3,
+      "driveSysTargetPower": 0.3,
+      "angleTolerance": 3.0
+    },
+    "DriveSysEncoderVariables" : {
+      "__Comment" : "These values are applicable when driving with RUN_USING_ENCODERS or RUN_TO_POSITION setting",
+      "LineFollowMaxSpeed" : 0.3,
+      "TurningMaxSpeed" : 0.3,
+      "StraightLineMaxSpeed" : 0.5,
+      "DriveSysTeleOpMaxSpeed" : 1.0
+    },
+    "CoordinateSys" : {
+      "startingX" : 0.0,
+      "startingY" : 0.0,
+      "startingAngle" : 0.0
+    }
+  },
+  "CoordinateSys" : {
+    "CoordinateSys" : {
+      "startingX" : 0.0,
+      "startingY" : 0.0,
+      "startingAngle" : 0.0
+    }
+  },
   "LineFollowAndIMU" : {
     "LineFollow": {
       "LightSensor": {

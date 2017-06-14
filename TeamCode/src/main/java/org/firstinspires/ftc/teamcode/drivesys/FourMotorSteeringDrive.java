@@ -19,7 +19,7 @@ public class FourMotorSteeringDrive extends DriveSystem {
     double prevPowerL1, prevPowerL2, prevPowerR1, prevPowerR2;
     double frictionCoefficient;
     int maxSpeedCPS; // encoder counts per second
-    Wheel wheel;
+    public Wheel wheel;
     int motorCPR;  // Cycles Per Revolution.  == 1120 for Neverest40, 560 for Neverest20
     boolean driveSysIsReversed = false;
     double distBetweenWheels;
@@ -202,12 +202,6 @@ public class FourMotorSteeringDrive extends DriveSystem {
         }
         this.setZeroPowerMode(DcMotor.ZeroPowerBehavior.BRAKE);
         this.frictionCoefficient = frictionCoefficient;
-        this.maxSpeedCPS = maxSpeedCPS;
-        DbgLog.msg("ftc9773: max speed CPS = %d", maxSpeedCPS);
-        motorL1.setMaxSpeed(maxSpeedCPS);
-        motorL2.setMaxSpeed(maxSpeedCPS);
-        motorR1.setMaxSpeed(maxSpeedCPS);
-        motorR2.setMaxSpeed(maxSpeedCPS);
         this.wheel = wheel;
         this.motorCPR = motorCPR;
         this.prevPowerL1 = this.prevPowerL2 = this.prevPowerR1 = this.prevPowerR2 = 0.0;
@@ -222,6 +216,7 @@ public class FourMotorSteeringDrive extends DriveSystem {
         R1Timer.reset();
         R2Timer.reset();
     }
+
 
     @Override
     public void drive(float speed, float direction) {
@@ -411,27 +406,6 @@ public class FourMotorSteeringDrive extends DriveSystem {
         motorR2.setMode(runMode);
     }
 
-    // Note: setMaxSpeed should be set once during the init time.
-    //  Calling setMaxSpeed and resumeMaxSpeed() will not work well with the
-    //  new optimization in the drive() method, where the prevPower values are saved and
-    //  the new power values do not get applied if they are same as the previous power values.
-    @Override
-    public void setMaxSpeedCPS(int cps) {
-        DbgLog.msg("ftc9773: Current max speed =%d, new maxspeedCPS=%d", maxSpeedCPS, cps);
-        motorL1.setMaxSpeed(cps);
-        motorL2.setMaxSpeed(cps);
-        motorR1.setMaxSpeed(cps);
-        motorR2.setMaxSpeed(cps);
-    }
-
-    @Override
-    public void resumeMaxSpeed() {
-        motorL1.setMaxSpeed((int) maxSpeedCPS);
-        motorL2.setMaxSpeed((int) maxSpeedCPS);
-        motorR1.setMaxSpeed((int) maxSpeedCPS);
-        motorR2.setMaxSpeed((int) maxSpeedCPS);
-    }
-
     @Override
     public void reverse() {
         if (driveSysIsReversed) {
@@ -529,23 +503,6 @@ public class FourMotorSteeringDrive extends DriveSystem {
         motorL.setPower(0);
     }*/
 
-    @Override
-    public void testEncoders() {
-//        this.setDriveSysMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-//        ElapsedTime timer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
-//        timer.reset();
-//        DbgLog.msg("ftc9773: L1 Encoder: %d L2 Encoder: %d R1 Encoder: %d R2 Encoder: %d", getNonZeroCurrentPos(motorL1), getNonZeroCurrentPos(motorL2), getNonZeroCurrentPos(motorR1), getNonZeroCurrentPos(motorR2));
-//        while (curOpMode.opModeIsActive() && timer.milliseconds()<4000){
-//            this.drive(1.0F,0);
-//        }
-//        this.stop();
-//        DbgLog.msg("ftc9773: L1 Encoder: %d L2 Encoder: %d R1 Encoder: %d R2 Encoder: %d", getNonZeroCurrentPos(motorL1), getNonZeroCurrentPos(motorL2), getNonZeroCurrentPos(motorR1), getNonZeroCurrentPos(motorR2));
-        this.motorL1.setMaxSpeed(2500);
-        this.motorL2.setMaxSpeed(2500);
-        this.motorR1.setMaxSpeed(2500);
-        this.motorR2.setMaxSpeed(2500);
-    }
-
     public boolean motorControllerIsConnected() {
         boolean connected = false;
 
@@ -576,4 +533,23 @@ public class FourMotorSteeringDrive extends DriveSystem {
 
     @Override
     public void unreverseTeleop() { reverseMultiplier = 1;}
+
+    @Override
+    public double[] getCurPosition(){
+        long[] curRawPosition = new long[4];
+        curRawPosition[0] = getNonZeroCurrentPos(motorL1);
+        curRawPosition[1] = getNonZeroCurrentPos(motorL2);
+        curRawPosition[2] = getNonZeroCurrentPos(motorR1);
+        curRawPosition[3] = getNonZeroCurrentPos(motorR2);
+
+        long[] curAvgRawPosition = new long[2];
+        curAvgRawPosition[0] = (curRawPosition[0] + curRawPosition[1])/2;
+        curAvgRawPosition[1] = (curRawPosition[2] + curRawPosition[3])/2;
+
+        double[] curInchPosition = new double[2];
+        curInchPosition[0] = curAvgRawPosition[0] / (motorCPR / wheel.getCircumference());
+        curInchPosition[1] = curAvgRawPosition[1] / (motorCPR / wheel.getCircumference());
+
+        return curInchPosition;
+    }
 }

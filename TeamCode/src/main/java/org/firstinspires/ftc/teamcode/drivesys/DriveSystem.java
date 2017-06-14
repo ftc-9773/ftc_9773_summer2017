@@ -140,8 +140,8 @@ public abstract class DriveSystem {
     public abstract void driveToEncoderCounts(ElapsedEncoderCounts fromCounts, ElapsedEncoderCounts toCounts,
                                               float speed);
 
-    public abstract void setMaxSpeedCPS(int maxSpeedCPS);
-    public abstract void resumeMaxSpeed();
+
+
     public abstract void reverse();
     public abstract ElapsedEncoderCounts getNewElapsedCountsObj();
     public abstract DriveSysPosition getNewDrivesysPositionObj();
@@ -157,5 +157,5 @@ public abstract class DriveSystem {
     public abstract double getScaleSpinMultiplier();
     public abstract void reverseTeleop();
     public abstract void unreverseTeleop();
-
+    public abstract double[] getCurPosition();
 }
