@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.navigation;
 
+import com.qualcomm.ftccommon.DbgLog;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.FTCRobot;
@@ -27,10 +28,14 @@ public class CoordinateSys {
     public void updatePose(){
         double[] curPosition = robot.driveSystem.getCurPosition();
         avgDistance = (curPosition[0] + curPosition[1]) / 2;
+        DbgLog.msg("ftc9773: avgdistance: %f", avgDistance);
 
         pose[2] += (curPosition[0] + curPosition[1]) / robot.distanceBetweenWheels;
+        DbgLog.msg("ftc9773: poseAngle: %f", pose[2]);
         pose[0] += avgDistance * Math.cos(pose[2]);
+        DbgLog.msg("ftc9773: poseX: %f", pose[0]);
         pose[1] += avgDistance * Math.sin(pose[2]);
+        DbgLog.msg("ftc9773: poseY: %f", pose[1]);
     }
 
     public double getX(){return pose[0];}

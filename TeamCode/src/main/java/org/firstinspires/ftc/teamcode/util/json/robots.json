@@ -10,7 +10,7 @@
     "odsLog" : "/sdcard/FIRST/team9773/logs/ods",
     "colorLog" : "/sdcard/FIRST/team9773/logs/color",
     "partAccLog" : "/sdcard/FIRST/team9773/logs/partAcc"
-  }
+  },
   "MRGyroTestRobot" : {
     "driveSystem": "4Motor6WDSteering",
     "attachments": ["CapBallLift"],

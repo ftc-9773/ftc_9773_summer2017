@@ -189,9 +189,15 @@ public class FTCRobot {
             driverStation.getNextCmd();
             instrumentation.addInstrData();
             navigation.coordinateSys.updatePose();
-            curOpMode.telemetry.addData("X: ", navigation.coordinateSys.getX());
-            curOpMode.telemetry.addData("Y: ", navigation.coordinateSys.getY());
-            curOpMode.telemetry.addData("Angle: ", navigation.coordinateSys.getAngle());
+            double x = navigation.coordinateSys.getX();
+            double y = navigation.coordinateSys.getY();
+            double angle = navigation.coordinateSys.getAngle();
+            curOpMode.telemetry.addData("X: ", x);
+            curOpMode.telemetry.addData("Y: ", y);
+            curOpMode.telemetry.addData("Angle: ", angle);
+            DbgLog.msg("ftc9773: CurPosition: X: %f", x);
+            DbgLog.msg("ftc9773: CurPosition: Y: %f", y);
+            DbgLog.msg("ftc9773: CurPosition: Angle: %f", angle);
             curOpMode.idle();
         }
         instrumentation.closeLog();
