@@ -48,8 +48,9 @@ public class DriverStation {
         liftStates.add("Mid");
         liftStates.add("Up");
         liftStates.add("Lifting");
+        liftStates.add("NonExistent");
         liftStateMachine = new StateMachine(liftStates);
-        liftStateMachine.switchState("Closed");
+        liftStateMachine.switchState("NonExistent");
         driveSysStates = new ArrayList<>();
         driveSysStates.add("Idle");
         driveSysStates.add("Driving");
@@ -58,8 +59,9 @@ public class DriverStation {
         partAccStates = new ArrayList<>();
         partAccStates.add("Off");
         partAccStates.add("On");
+        partAccStates.add("NonExistent");
         partAccStateMachine = new StateMachine(partAccStates);
-        partAccStateMachine.switchState("Off");
+        partAccStateMachine.switchState("NonExistent");
         DbgLog.msg("ftc9773: DriverStation initialized");
     }
 
@@ -118,6 +120,8 @@ public class DriverStation {
                             }
                         }
                         break;
+                    case "NonExistent":
+                        break;
                 }
 
                 switch (driveSysStateMachine.getCurState()) {
@@ -159,22 +163,28 @@ public class DriverStation {
                             robot.partRelObj.keepParticles();
                         }
                         break;
+                    case "NonExistent":
+                        break;
                 }
 
-                if (curOpMode.gamepad2.x) {
-                    robot.beaconClaimObj.pushBeacon();
-                } else if (curOpMode.gamepad2.b) {
-                    robot.beaconClaimObj.retractBeacon();
-                } else {
-                    robot.beaconClaimObj.idleBeacon();
+                if (robot.beaconClaimObj != null) {
+                    if (curOpMode.gamepad2.x) {
+                        robot.beaconClaimObj.pushBeacon();
+                    } else if (curOpMode.gamepad2.b) {
+                        robot.beaconClaimObj.retractBeacon();
+                    } else {
+                        robot.beaconClaimObj.idleBeacon();
+                    }
                 }
 
-                if (curOpMode.gamepad2.left_stick_y < 0){
-                    robot.harvesterObj.intake();
-                } else if (curOpMode.gamepad2.left_stick_y > 0){
-                    robot.harvesterObj.output();
-                } else if (curOpMode.gamepad2.left_stick_y == 0){
-                    robot.harvesterObj.idle();
+                if (robot.harvesterObj != null) {
+                    if (curOpMode.gamepad2.left_stick_y < 0) {
+                        robot.harvesterObj.intake();
+                    } else if (curOpMode.gamepad2.left_stick_y > 0) {
+                        robot.harvesterObj.output();
+                    } else if (curOpMode.gamepad2.left_stick_y == 0) {
+                        robot.harvesterObj.idle();
+                    }
                 }
 
                 if (curOpMode.gamepad1.x){
@@ -184,20 +194,24 @@ public class DriverStation {
                     robot.driveSystem.unreverseTeleop();
                 }
 
-                if (curOpMode.gamepad1.left_bumper){
-                    robot.wallFollowObj.activateWallFollwer(600);
-                } else if (curOpMode.gamepad1.right_bumper){
-                    robot.wallFollowObj.deactivateWallFollower(600);
-                }else {
-                    robot.wallFollowObj.idle();
+                if (robot.wallFollowObj != null) {
+                    if (curOpMode.gamepad1.left_bumper) {
+                        robot.wallFollowObj.activateWallFollwer(600);
+                    } else if (curOpMode.gamepad1.right_bumper) {
+                        robot.wallFollowObj.deactivateWallFollower(600);
+                    } else {
+                        robot.wallFollowObj.idle();
+                    }
                 }
 
-                if (curOpMode.gamepad2.dpad_left){
-                    robot.capBallLiftObj.activateCrown();
-                } else if (curOpMode.gamepad2.dpad_right){
-                    robot.capBallLiftObj.deactivateCrown();
-                } else {
-                    robot.capBallLiftObj.idleCrown();
+                if (robot.capBallLiftObj != null) {
+                    if (curOpMode.gamepad2.dpad_left) {
+                        robot.capBallLiftObj.activateCrown();
+                    } else if (curOpMode.gamepad2.dpad_right) {
+                        robot.capBallLiftObj.deactivateCrown();
+                    } else {
+                        robot.capBallLiftObj.idleCrown();
+                    }
                 }
 
 //                if (curOpMode.gamepad2.dpad_down){
@@ -252,27 +266,29 @@ public class DriverStation {
                         if (robot.driveSystem.getScaleSpinMultiplier() != 0.7){
                             robot.driveSystem.scaleSpinPower(0.7);
                         }
-                        if (curOpMode.gamepad2.y) {
-                            robot.capBallLiftObj.foldFork();
-                            liftStateMachine.switchState("Closed");
-                        } else if (curOpMode.gamepad2.right_trigger != 0.0){
-                            robot.capBallLiftObj.unfoldFork();
-                        } else{
-                            robot.capBallLiftObj.idleFork();
-                        }
-                        if (!robot.capBallLiftObj.lockLift) {
-                            robot.capBallLiftObj.lockLiftMotor();
-                        }
-                        if (-curOpMode.gamepad2.right_stick_y != 0.0) {
-                            if (robot.capBallLiftObj.lockLift) {
-                                robot.capBallLiftObj.unlockLiftMotor();
+                        if (robot.capBallLiftObj != null) {
+                            if (curOpMode.gamepad2.y) {
+                                robot.capBallLiftObj.foldFork();
+                                liftStateMachine.switchState("Closed");
+                            } else if (curOpMode.gamepad2.right_trigger != 0.0) {
+                                robot.capBallLiftObj.unfoldFork();
+                            } else {
+                                robot.capBallLiftObj.idleFork();
                             }
-                            robot.capBallLiftObj.applyPower(-curOpMode.gamepad2.right_stick_y);
-                            liftStateMachine.switchState("Lifting");
-                        }
-                        if (robot.capBallLiftObj.useEncoders && curOpMode.gamepad2.right_bumper){
-                            robot.capBallLiftObj.goToMidPosition();
-                            liftStateMachine.switchState("Mid");
+                            if (!robot.capBallLiftObj.lockLift) {
+                                robot.capBallLiftObj.lockLiftMotor();
+                            }
+                            if (-curOpMode.gamepad2.right_stick_y != 0.0) {
+                                if (robot.capBallLiftObj.lockLift) {
+                                    robot.capBallLiftObj.unlockLiftMotor();
+                                }
+                                robot.capBallLiftObj.applyPower(-curOpMode.gamepad2.right_stick_y);
+                                liftStateMachine.switchState("Lifting");
+                            }
+                            if (robot.capBallLiftObj.useEncoders && curOpMode.gamepad2.right_bumper) {
+                                robot.capBallLiftObj.goToMidPosition();
+                                liftStateMachine.switchState("Mid");
+                            }
                         }
 
                         break;
@@ -361,6 +377,8 @@ public class DriverStation {
                         }
 
                         break;
+                    case "NonExistent":
+                        break;
                 }
                 switch (driveSysStateMachine.getCurState()) {
                     case "Idle":
@@ -401,21 +419,27 @@ public class DriverStation {
                             robot.partRelObj.keepParticles();
                         }
                         break;
+                    case "NonExistent":
+                        break;
                 }
-                if (curOpMode.gamepad2.x) {
-                    robot.beaconClaimObj.pushBeacon();
-                } else if (curOpMode.gamepad2.b) {
-                    robot.beaconClaimObj.retractBeacon();
-                } else {
-                    robot.beaconClaimObj.idleBeacon();
+                if (robot.beaconClaimObj != null) {
+                    if (curOpMode.gamepad2.x) {
+                        robot.beaconClaimObj.pushBeacon();
+                    } else if (curOpMode.gamepad2.b) {
+                        robot.beaconClaimObj.retractBeacon();
+                    } else {
+                        robot.beaconClaimObj.idleBeacon();
+                    }
                 }
 
-                if (curOpMode.gamepad2.left_stick_y < 0){
-                    robot.harvesterObj.intake();
-                } else if (curOpMode.gamepad2.left_stick_y > 0){
-                    robot.harvesterObj.output();
-                } else if (curOpMode.gamepad2.left_stick_y == 0){
-                    robot.harvesterObj.idle();
+                if (robot.harvesterObj != null) {
+                    if (curOpMode.gamepad2.left_stick_y < 0) {
+                        robot.harvesterObj.intake();
+                    } else if (curOpMode.gamepad2.left_stick_y > 0) {
+                        robot.harvesterObj.output();
+                    } else if (curOpMode.gamepad2.left_stick_y == 0) {
+                        robot.harvesterObj.idle();
+                    }
                 }
 
                 if (curOpMode.gamepad1.x){
@@ -423,24 +447,29 @@ public class DriverStation {
                 } else if (curOpMode.gamepad1.b){
                     robot.driveSystem.unreverseTeleop();
                 }
-                if (curOpMode.gamepad1.left_bumper){
-                    robot.wallFollowObj.activateWallFollwer(600);
-                } else if (curOpMode.gamepad1.right_bumper){
-                    robot.wallFollowObj.deactivateWallFollower(600);
-                }else {
-                    robot.wallFollowObj.idle();
+
+                if (robot.wallFollowObj != null) {
+                    if (curOpMode.gamepad1.left_bumper) {
+                        robot.wallFollowObj.activateWallFollwer(600);
+                    } else if (curOpMode.gamepad1.right_bumper) {
+                        robot.wallFollowObj.deactivateWallFollower(600);
+                    } else {
+                        robot.wallFollowObj.idle();
+                    }
                 }
 
-                if (curOpMode.gamepad2.dpad_left){
-                    robot.capBallLiftObj.activateCrown();
-                } else if (curOpMode.gamepad2.dpad_right){
-                    robot.capBallLiftObj.deactivateCrown();
-                } else {
-                    robot.capBallLiftObj.idleCrown();
-                }
+                if (robot.capBallLiftObj != null) {
+                    if (curOpMode.gamepad2.dpad_left) {
+                        robot.capBallLiftObj.activateCrown();
+                    } else if (curOpMode.gamepad2.dpad_right) {
+                        robot.capBallLiftObj.deactivateCrown();
+                    } else {
+                        robot.capBallLiftObj.idleCrown();
+                    }
 
-                if (curOpMode.gamepad2.right_trigger != 0.0){
-                    robot.capBallLiftObj.unfoldFork();
+                    if (curOpMode.gamepad2.right_trigger != 0.0) {
+                        robot.capBallLiftObj.unfoldFork();
+                    }
                 }
 
 //                if (curOpMode.gamepad2.dpad_down){

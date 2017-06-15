@@ -537,10 +537,10 @@ public class FourMotorSteeringDrive extends DriveSystem {
     @Override
     public double[] getCurPosition(){
         long[] curRawPosition = new long[4];
-        curRawPosition[0] = getNonZeroCurrentPos(motorL1);
-        curRawPosition[1] = getNonZeroCurrentPos(motorL2);
-        curRawPosition[2] = getNonZeroCurrentPos(motorR1);
-        curRawPosition[3] = getNonZeroCurrentPos(motorR2);
+        curRawPosition[0] = motorL1.getCurrentPosition();
+        curRawPosition[1] = motorL2.getCurrentPosition();
+        curRawPosition[2] = motorR1.getCurrentPosition();
+        curRawPosition[3] = motorR2.getCurrentPosition();
 
         long[] curAvgRawPosition = new long[2];
         curAvgRawPosition[0] = (curRawPosition[0] + curRawPosition[1])/2;

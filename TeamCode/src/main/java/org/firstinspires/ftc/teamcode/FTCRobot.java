@@ -6,6 +6,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.ftccommon.DbgLog;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.attachments.Attachment;
@@ -162,6 +163,7 @@ public class FTCRobot {
                 case "CapBallLift":
                     attachmentsArr[i] = new CapBallLift(this, curOpMode, rootObj);
                     capBallLiftObj = (CapBallLift) attachmentsArr[i];
+                    driverStation.partAccStateMachine.switchState("Closed");
                     DbgLog.msg("ftc9773: capBallLiftObj created");
                     break;
                 case "Harvester":
@@ -172,6 +174,7 @@ public class FTCRobot {
                 case "ParticleAccelerator":
                     attachmentsArr[i] = new ParticleAccelerator(this, curOpMode, rootObj);
                     partAccObj = (ParticleAccelerator) attachmentsArr[i];
+                    driverStation.partAccStateMachine.switchState("Off");
                     DbgLog.msg("ftc9773: partAccObj created");
                     break;
                 case "ParticleRelease":
@@ -184,20 +187,24 @@ public class FTCRobot {
     }
 
     public void runTeleOp(String allianceColor) {
+        ElapsedTime timer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
         curOpMode.waitForStart();
+        timer.reset();
         while (curOpMode.opModeIsActive()) {
             driverStation.getNextCmd();
             instrumentation.addInstrData();
-            navigation.coordinateSys.updatePose();
-            double x = navigation.coordinateSys.getX();
-            double y = navigation.coordinateSys.getY();
-            double angle = navigation.coordinateSys.getAngle();
-            curOpMode.telemetry.addData("X: ", x);
-            curOpMode.telemetry.addData("Y: ", y);
-            curOpMode.telemetry.addData("Angle: ", angle);
-            DbgLog.msg("ftc9773: CurPosition: X: %f", x);
-            DbgLog.msg("ftc9773: CurPosition: Y: %f", y);
-            DbgLog.msg("ftc9773: CurPosition: Angle: %f", angle);
+            if (timer.milliseconds() >= 10) {
+                navigation.coordinateSys.updatePose();
+                double x = navigation.coordinateSys.getX();
+                double y = navigation.coordinateSys.getY();
+                double angle = navigation.coordinateSys.getAngle();
+                timer.reset();
+                curOpMode.telemetry.addData("X: ", x);
+                curOpMode.telemetry.addData("Y: ", y);
+                curOpMode.telemetry.addData("Angle: ", angle);
+                curOpMode.telemetry.update();
+                DbgLog.msg("ftc9773: CurPose: X: %f, Y: %f, Angle: %f", x, y, angle);
+            }
             curOpMode.idle();
         }
         instrumentation.closeLog();
