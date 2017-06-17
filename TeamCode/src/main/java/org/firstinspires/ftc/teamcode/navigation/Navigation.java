@@ -73,6 +73,12 @@ public class Navigation {
                         navOption.getIMUVariableDouble("straightPID_kp"),
                         navOption.getIMUVariableDouble("turnPID_kp"));
             }
+            else if (navOption.getIMUType().equalsIgnoreCase("BNO055IMU")){
+                DbgLog.msg("ftc9773: instantiating BNO055IMU");
+                this.gyro = new BoschIMU(robot, curOpMode, this, navOption.getIMUVariableDouble("angleTolerance"),
+                        navOption.getIMUVariableDouble("straightPID_kp"),
+                        navOption.getIMUVariableDouble("turnPID_kp"));
+            }
         }
         else {
             this.gyro = null;

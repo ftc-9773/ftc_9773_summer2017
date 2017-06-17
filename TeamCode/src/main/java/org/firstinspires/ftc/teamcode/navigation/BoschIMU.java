@@ -37,7 +37,6 @@ public class BoschIMU implements GyroInterface {
     double angleTolerance;
     private BNO055IMU_status status= BNO055IMU_status.STATUS_NOT_SET;
     private double updateCount;
-    double prevYaw;
     ElapsedTime getYawTimer;
     // Do not bother to call getIntegratedZValue if it has been less than 20 milli seconds
     // since the last time it was called.
@@ -54,25 +53,7 @@ public class BoschIMU implements GyroInterface {
         status= BNO055IMU_status.STATUS_NOT_SET;
         updateCount = 0;
 
-
-        BNO055IMU.Parameters calibrationParameters = new BNO055IMU.Parameters();
-//        parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
-//        parameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
-//        parameters.calibrationDataFile = "BNO055IMUCalibration.json";
-        calibrationParameters.loggingEnabled = true;
-        calibrationParameters.loggingTag = "IMU";
-//        parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
-
         imu = curOpMode.hardwareMap.get(BNO055IMU.class, "imu");
-        imu.initialize(calibrationParameters);
-
-        // make sure the gyro is calibrated before continuing
-        BNO055IMU.CalibrationData calibrationData = imu.readCalibrationData();
-        String fileName = "BNO055IMUCalibration.json";
-        File file = AppUtil.getInstance().getSettingsFile(fileName);
-        ReadWriteFile.writeFile(file, calibrationData.serialize());
-        curOpMode.telemetry.addData("BNO055IMU: ", "Done with calibrating");
-
         //initialize
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
@@ -87,15 +68,14 @@ public class BoschIMU implements GyroInterface {
         getYawTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
 //        prevYaw = gyro.getHeading();
         getYawTimer.reset();
+        imu.startAccelerationIntegration(new Position(), new Velocity(), 10);
     }
 
     // todo: find out how to return yaw and pitch angles
     // for Navx it is navx_device.getYaw() and navx_device.getPitch()
 
     @Override
-    public void initAfterStart() {
-        imu.startAccelerationIntegration(new Position(), new Velocity(), 10);
-    }
+    public void initAfterStart() {return;}
 
     @Override
     public Navigation.GyroType getGyroType() {
