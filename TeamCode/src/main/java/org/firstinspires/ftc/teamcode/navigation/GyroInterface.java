@@ -13,6 +13,7 @@ public interface GyroInterface {
     Navigation.GyroType getGyroType();
     double getYaw();
     double getPitch();
+    double getRoll();
     boolean isGyroWorking();
     void testAndSetGyroStatus();
     double getUpdateCount();

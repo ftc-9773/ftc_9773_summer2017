@@ -38,7 +38,7 @@ public class Navigation {
     private Instrumentation.ODSlightDetected odsInstr=null;
     private Instrumentation.ColorSensorInstr colorInstr=null;
     private boolean printEveryUpdate=false;
-    public enum GyroType {NAVX_MICRO, MR_GYRO}
+    public enum GyroType {NAVX_MICRO, MR_GYRO, BNO055IMU}
 
 
     public enum SpinDirection {CLOCKWISE, COUNTERCLOCKWISE, NONE}

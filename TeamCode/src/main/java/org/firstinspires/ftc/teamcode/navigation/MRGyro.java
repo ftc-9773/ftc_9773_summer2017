@@ -103,6 +103,11 @@ public class MRGyro implements GyroInterface {
     }
 
     @Override
+    public double getRoll(){
+        return 0.0;
+    }
+
+    @Override
     public boolean isGyroWorking() {
         return true;
     }
