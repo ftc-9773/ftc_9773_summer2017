@@ -83,6 +83,11 @@ public class BoschIMU implements GyroInterface {
     }
 
     @Override
+    public void close() {
+        imu.close();
+    }
+
+    @Override
     public double getYaw() {
         return getModifiedYaw();
     }
@@ -97,7 +102,9 @@ public class BoschIMU implements GyroInterface {
         } else {
             newYaw = curYaw;
         }
-        //Subtract from 360 so all sensors return in same clockwise direction
+        //Subtract from 360 so all gyro sensors return in same clockwise direction
+        // MR gyro return angle on a 0-360 degree scale while spinning clockwise;
+        // Navx-micro returns angle 0 to 180 & -180 to 0 scale while spinning clockwise.
         return (360-newYaw);
     }
 

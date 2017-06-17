@@ -173,7 +173,7 @@ public class Navigation {
 //        if (driveToDistInstr != null) { driveToDistInstr.closeLog(); }
 //        if (driveTillWhitelineInstr != null) { driveTillWhitelineInstr.closeLog(); }
 //        if (turnRobotInstr != null) { turnRobotInstr.closeLog(); }
-        //ToDo:  Call gyro.close()
+        gyro.close();
     }
 
     public double distanceBetweenAngles(double angle1, double angle2) {

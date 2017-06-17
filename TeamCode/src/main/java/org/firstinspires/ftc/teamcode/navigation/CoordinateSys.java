@@ -31,9 +31,10 @@ public class CoordinateSys {
 
     public void updatePose(){
         //TODO: Once all 4 encoder wires are there,remove
-        double distance = elapsedEncoderCounts.getDistanceTravelledInInches() * 2;
+//        double distance = elapsedEncoderCounts.getDistanceTravelledInInches() * 2;
         double distanceL = elapsedEncoderCounts.getDistanceTravelledInInchesLeft() * 2;
         double distanceR = elapsedEncoderCounts.getDistanceTravelledInInchesRight() * 2;
+        double distance = (distanceL + distanceR) / 2;
 
 //        pose[2] = prevPose[2] + ((distanceR - distanceL) / robot.distanceBetweenWheels);
         pose[2] = robot.navigation.gyro.getYaw();

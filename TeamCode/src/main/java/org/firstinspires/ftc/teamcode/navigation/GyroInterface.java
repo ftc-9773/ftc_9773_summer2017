@@ -11,6 +11,7 @@ package org.firstinspires.ftc.teamcode.navigation;
 public interface GyroInterface {
     void initAfterStart();
     Navigation.GyroType getGyroType();
+
     double getYaw();
     double getPitch();
     double getRoll();
@@ -18,7 +19,7 @@ public interface GyroInterface {
     void testAndSetGyroStatus();
     double getUpdateCount();
     double getAngleTolerance();
-    //ToDo:  Create a close() method
+    void close();
 
     void goStraightPID(boolean driveBackwards, double degrees, float speed);
 }

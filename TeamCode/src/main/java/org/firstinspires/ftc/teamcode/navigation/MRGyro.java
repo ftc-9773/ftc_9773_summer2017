@@ -103,6 +103,12 @@ public class MRGyro implements GyroInterface {
     }
 
     @Override
+    public void close()
+    {
+        gyro.close();
+    }
+
+    @Override
     public double getRoll(){
         return 0.0;
     }
