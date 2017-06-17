@@ -61,10 +61,32 @@ public class FourMotorSteeringDrive extends DriveSystem {
             double avgEncoderCounts = 0.0;
             double distanceTravelled = 0.0;
 
-            avgEncoderCounts = (Math.abs(motorL1.getCurrentPosition() - encoderCountL1) +
-                    Math.abs(getNonZeroCurrentPos(motorL2) - encoderCountL2) +
-                    Math.abs(getNonZeroCurrentPos(motorR1) - encoderCountR1) +
-                    Math.abs(getNonZeroCurrentPos(motorR2) - encoderCountR2)) / 4;
+            avgEncoderCounts = ((motorL1.getCurrentPosition() - encoderCountL1) +
+                    (getNonZeroCurrentPos(motorL2) - encoderCountL2) +
+                    (getNonZeroCurrentPos(motorR1) - encoderCountR1) +
+                    (getNonZeroCurrentPos(motorR2) - encoderCountR2)) / 4;
+
+            distanceTravelled = (avgEncoderCounts / motorCPR) * wheel.getCircumference();
+            return (distanceTravelled);
+        }
+
+        public double getDistanceTravelledInInchesLeft(){
+            double avgEncoderCounts = 0.0;
+            double distanceTravelled = 0.0;
+
+            avgEncoderCounts = ((motorL1.getCurrentPosition() - encoderCountL1) +
+                    (getNonZeroCurrentPos(motorL2) - encoderCountL2)) / 2;
+
+            distanceTravelled = (avgEncoderCounts / motorCPR) * wheel.getCircumference();
+            return (distanceTravelled);
+        }
+
+        public double getDistanceTravelledInInchesRight(){
+            double avgEncoderCounts = 0.0;
+            double distanceTravelled = 0.0;
+
+            avgEncoderCounts = ((getNonZeroCurrentPos(motorR1) - encoderCountR1) +
+                    (getNonZeroCurrentPos(motorR2) - encoderCountR2)) / 2;
 
             distanceTravelled = (avgEncoderCounts / motorCPR) * wheel.getCircumference();
             return (distanceTravelled);
@@ -459,6 +481,10 @@ public class FourMotorSteeringDrive extends DriveSystem {
 
     public int getNonZeroCurrentPos(DcMotor motor){
         int curPos = motor.getCurrentPosition();
+        if (true) {
+            return curPos;
+        }
+        //TODO: Temporary fix to avoid teleop problems with rev
         boolean skipWhileLoop = false;
 //        DbgLog.msg("ftc9773: Motor = %s, curPos = %d, isZeroPos = %b", motor.toString(), curPos, motor==motorL1 ? L1IsZero : motor==motorR1 ? R1IsZero : motor==motorL2 ? L2IsZero : R2IsZero);
         if(motor==motorL1 && L1IsZero) {

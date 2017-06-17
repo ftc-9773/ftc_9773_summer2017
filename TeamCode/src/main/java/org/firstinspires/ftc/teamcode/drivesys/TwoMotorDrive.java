@@ -50,6 +50,26 @@ public class TwoMotorDrive extends DriveSystem{
             return (distanceTravelled);
         }
 
+        public double getDistanceTravelledInInchesLeft(){
+            double distanceTravelled = 0.0;
+            double encoderCounts = 0.0;
+
+            encoderCounts = motorL.getCurrentPosition();
+
+            distanceTravelled = (encoderCounts / motorCPR) * wheel.getCircumference();
+            return (distanceTravelled);
+        }
+
+        public double getDistanceTravelledInInchesRight(){
+            double distanceTravelled = 0.0;
+            double encoderCounts = 0.0;
+
+            encoderCounts = motorR.getCurrentPosition();
+
+            distanceTravelled = (encoderCounts / motorCPR) * wheel.getCircumference();
+            return (distanceTravelled);
+        }
+
         public double getDegreesTurned() {
             double distanceTravelledInInches, degreesTurned;
             double leftDegreesTurned;

@@ -27,6 +27,8 @@ public abstract class DriveSystem {
     public interface ElapsedEncoderCounts {
         void reset();
         double getDistanceTravelledInInches();
+        double getDistanceTravelledInInchesLeft();
+        double getDistanceTravelledInInchesRight();
         double getDegreesTurned();
         void printCurrentEncoderCounts();
         void copyFrom(ElapsedEncoderCounts otherElapsedCounts);

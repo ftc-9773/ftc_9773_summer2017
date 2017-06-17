@@ -168,7 +168,7 @@
     "CoordinateSys" : {
       "startingX" : 0.0,
       "startingY" : 0.0,
-      "startingAngle" : 0.0
+      "startingAngle" : 1.5708
     }
   },
   "LineFollowAndIMU" : {
