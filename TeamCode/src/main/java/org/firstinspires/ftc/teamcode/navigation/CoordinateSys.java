@@ -35,10 +35,11 @@ public class CoordinateSys {
         double distanceL = elapsedEncoderCounts.getDistanceTravelledInInchesLeft() * 2;
         double distanceR = elapsedEncoderCounts.getDistanceTravelledInInchesRight() * 2;
 
-        pose[2] = prevPose[2] + ((distanceR - distanceL) / robot.distanceBetweenWheels);
+//        pose[2] = prevPose[2] + ((distanceR - distanceL) / robot.distanceBetweenWheels);
+        pose[2] = robot.navigation.gyro.getYaw();
         pose[0] = prevPose[0] + distance * Math.cos(prevPose[2]);
         pose[1] = prevPose[1] + distance * Math.sin(prevPose[2]);
-        DbgLog.msg("ftc9773: X=%f, Y=%f, angle=%f", pose[0], pose[1], Math.toDegrees(pose[2]));
+        DbgLog.msg("ftc9773: X=%f, Y=%f, angle=%f", pose[0], pose[1], pose[2]);
         DbgLog.msg("ftc9773: dL=%f, dR=%f, D=%f", distanceL, distanceR, distance);
 
         for (int i=0;i<3;i++){

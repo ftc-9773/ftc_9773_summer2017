@@ -201,7 +201,7 @@ public class FTCRobot {
                 timer.reset();
                 curOpMode.telemetry.addData("X: ", x);
                 curOpMode.telemetry.addData("Y: ", y);
-                curOpMode.telemetry.addData("Angle: ", Math.toDegrees(angle));
+                curOpMode.telemetry.addData("Angle: ", angle);
                 curOpMode.telemetry.update();
 //                DbgLog.msg("ftc9773: CurPose: X: %f, Y: %f, Angle: %f", x, y, Math.toDegrees(angle));
             }

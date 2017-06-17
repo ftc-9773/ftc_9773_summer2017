@@ -164,11 +164,31 @@
       "startingAngle" : 0.0
     }
   },
-  "CoordinateSys" : {
+  "CoordinateSys_IMU" : {
     "CoordinateSys" : {
       "startingX" : 0.0,
       "startingY" : 0.0,
       "startingAngle" : 1.5708
+    },
+    "IMU": {
+      "name" : "BNO055IMU",
+      "type" : "BNO055IMU",
+      "porttype": "i2c",
+      "portnum": 0,
+      "driveSysInitialPower": 0.3,
+      "driveSysTargetPower": 0.3,
+      "angleTolerance": 3.0
+    }
+  },
+  "BoschIMU" : {
+    "IMU": {
+      "name" : "BNO055IMU",
+      "type" : "BNO055IMU",
+      "porttype": "i2c",
+      "portnum": 0,
+      "driveSysInitialPower": 0.3,
+      "driveSysTargetPower": 0.3,
+      "angleTolerance": 3.0
     }
   },
   "LineFollowAndIMU" : {

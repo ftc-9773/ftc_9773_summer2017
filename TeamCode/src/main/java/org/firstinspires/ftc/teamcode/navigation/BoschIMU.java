@@ -84,8 +84,21 @@ public class BoschIMU implements GyroInterface {
 
     @Override
     public double getYaw() {
-        angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZXY, AngleUnit.DEGREES);
-        return angles.firstAngle;
+        return getModifiedYaw();
+    }
+
+    private double getModifiedYaw() {
+        double newYaw = 0.0;
+        double curYaw = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZXY, AngleUnit.DEGREES).firstAngle;
+        // Note:  The BNO055IMU outputs values from 0 to 180 degrees and -180 to 0 degrees as the
+        // robot spins counter-clockwise. Convert this to a 0 to 360 degrees scale.
+        if (curYaw > -180 && curYaw < 0) {
+            newYaw = 360 + curYaw;
+        } else {
+            newYaw = curYaw;
+        }
+        //Subtract from 360 so all sensors return in same clockwise direction
+        return (360-newYaw);
     }
 
     @Override
