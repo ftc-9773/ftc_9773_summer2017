@@ -208,6 +208,7 @@ public class FTCRobot {
             curOpMode.idle();
         }
         instrumentation.closeLog();
+        if (navigation != null) { navigation.close(); }
     }
 
     /**

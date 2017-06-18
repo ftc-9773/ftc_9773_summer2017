@@ -74,8 +74,9 @@ public class FourMotorSteeringDrive extends DriveSystem {
             double avgEncoderCounts = 0.0;
             double distanceTravelled = 0.0;
 
-            avgEncoderCounts = ((motorL1.getCurrentPosition() - encoderCountL1) +
-                    (motorL2.getCurrentPosition() - encoderCountL2)) / 2;
+//            avgEncoderCounts = ((motorL1.getCurrentPosition() - encoderCountL1) +
+//                    (motorL2.getCurrentPosition() - encoderCountL2)) / 2;
+            avgEncoderCounts = motorL1.getCurrentPosition() - encoderCountL1;
 
             distanceTravelled = (avgEncoderCounts / motorCPR) * wheel.getCircumference();
             return (distanceTravelled);
@@ -85,8 +86,9 @@ public class FourMotorSteeringDrive extends DriveSystem {
             double avgEncoderCounts = 0.0;
             double distanceTravelled = 0.0;
 
-            avgEncoderCounts = ((motorR1.getCurrentPosition() - encoderCountR1) +
-                    (motorR2.getCurrentPosition() - encoderCountR2)) / 2;
+//            avgEncoderCounts = ((motorR1.getCurrentPosition() - encoderCountR1) +
+//                    (motorR2.getCurrentPosition() - encoderCountR2)) / 2;
+            avgEncoderCounts = motorR1.getCurrentPosition() - encoderCountR1;
 
             distanceTravelled = (avgEncoderCounts / motorCPR) * wheel.getCircumference();
             return (distanceTravelled);

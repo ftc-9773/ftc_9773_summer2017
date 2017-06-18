@@ -121,6 +121,12 @@ public class BoschIMU implements GyroInterface {
     }
 
     @Override
+    public double getYaw_cc0_180scale() {
+        return (imu.getAngularOrientation(AxesReference.INTRINSIC,
+                AxesOrder.ZXY, AngleUnit.DEGREES).firstAngle);
+    }
+
+    @Override
     public boolean isGyroWorking() {
         return true;
     }

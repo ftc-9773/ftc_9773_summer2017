@@ -15,6 +15,9 @@ public interface GyroInterface {
     double getYaw();
     double getPitch();
     double getRoll();
+    // The initial angle is 0; the angle changes from 0 to 180  and then
+    // from -180 to 0 as the robot spins counter-clockwise (cc)
+    double getYaw_cc0_180scale();
     boolean isGyroWorking();
     void testAndSetGyroStatus();
     double getUpdateCount();

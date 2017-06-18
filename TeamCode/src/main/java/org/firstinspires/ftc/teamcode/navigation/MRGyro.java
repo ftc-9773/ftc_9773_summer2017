@@ -114,6 +114,18 @@ public class MRGyro implements GyroInterface {
     }
 
     @Override
+    public double getYaw_cc0_180scale() {
+        double newYaw;
+        newYaw = getYaw();
+        if (newYaw < 180) {
+            newYaw  = -newYaw;
+        } else {
+            newYaw = 360 - newYaw;
+        }
+        return (newYaw);
+    }
+
+    @Override
     public boolean isGyroWorking() {
         return true;
     }
